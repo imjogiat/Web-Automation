@@ -14,45 +14,60 @@ class WebAutomateApp():
         self.loginframe.pack(padx=10, pady=10)
 
         tk.Label(self.loginframe, text="Username ").grid(row=0, column=0, sticky="w")
-        self.username_entry = tk.Entry(self.loginframe).grid(row=0, column=1, sticky="ew")
+        self.username_entry = tk.Entry(self.loginframe)
+        self.username_entry.grid(row=0, column=1, sticky="ew")
 
         tk.Label(self.loginframe, text="Password ").grid(row=1, column=0, sticky="w")
-        self.password_entry = tk.Entry(self.loginframe).grid(row=1, column=1, sticky="ew")
+        self.password_entry = tk.Entry(self.loginframe)
+        self.password_entry.grid(row=1, column=1, sticky="ew")
 
         #Creating submission frame
         self.submsnframe = tk.Frame(self.root)
         self.submsnframe.pack(padx=10, pady=10)
 
         tk.Label(self.submsnframe, text="Full Name ").grid(row=0, column=0, sticky="w")
-        self.fullname_entry = tk.Entry(self.submsnframe).grid(row=0, column=1, sticky="ew")
+        self.fullname_entry = tk.Entry(self.submsnframe)
+        self.fullname_entry.grid(row=0, column=1, sticky="ew")
 
         tk.Label(self.submsnframe, text="Email ").grid(row=1, column=0, sticky="w")
-        self.email_entry = tk.Entry(self.submsnframe).grid(row=1, column=1, sticky="ew")
+        self.email_entry = tk.Entry(self.submsnframe)
+        self.email_entry.grid(row=1, column=1, sticky="ew")
 
         tk.Label(self.submsnframe, text="Current Address ").grid(row=2, column=0, sticky="w")
-        self.curr_addr_entry = tk.Entry(self.submsnframe).grid(row=2, column=1, sticky="ew")
+        self.curr_addr_entry = tk.Entry(self.submsnframe)
+        self.curr_addr_entry.grid(row=2, column=1, sticky="ew")
 
         tk.Label(self.submsnframe, text="Permanent Address ").grid(row=3, column=0, sticky="w")
-        self.perm_addr_entry = tk.Entry(self.submsnframe).grid(row=3, column=1, sticky="ew")
+        self.perm_addr_entry = tk.Entry(self.submsnframe)
+        self.perm_addr_entry.grid(row=3, column=1, sticky="ew")
+
 
         #Create frame for the submit and close buttons
-        self.buttons_frame = tk.Frame(self.root)
+        self.buttons_frame = tk.Frame()
         self.buttons_frame.pack(padx=10, pady=10)
         
-        self.submit_button = tk.Button(self.buttons_frame, text="Submit").grid(row=4, column=0, sticky="w")
-        self.close_button = tk.Button(self.buttons_frame, text="Close").grid(row=4, column=1, sticky="e")
+        self.submit_button = tk.Button(self.buttons_frame, text="Submit", command=self.submit_data).grid(row=4, column=0, sticky="w", padx=5)
+        self.close_button = tk.Button(self.buttons_frame, text="Close", command=self.close_browser).grid(row=4, column=1, sticky="e", padx=5)
 
 
     def submit_data(self):
-        pass
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+        fullname = self.fullname_entry.get()
+        email = self.email_entry.get()
+        curr_address = self.curr_addr_entry.get()
+        perm_address = self.perm_addr_entry.get()
+
+        print(username, password)
 
 
     def close_browser(self):
-        pass
+        print("closing...")
 
 
 
 
 MyRoot = tk.Tk()
 MyWebAutoApp = WebAutomateApp(MyRoot)
+
 MyRoot.mainloop()
