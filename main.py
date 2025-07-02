@@ -88,7 +88,14 @@ class WebAutomatn:
 
     def close(self):
         # input("\n\nPress Enter to close the browser\n\n")
+        self.cleandir()
         self.driver.quit()
+
+    
+    def cleandir(self):
+        if os.path.exists("sampleFile.jpeg"):
+            os.remove("sampleFile.jpeg")
+
 
 if __name__ == "__main__":
 

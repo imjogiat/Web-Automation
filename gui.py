@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
 import os
-import time
 from main import WebAutomatn
 
 
@@ -71,18 +70,17 @@ class WebAutomateApp():
     def close_browser(self):
         print("closing...")
         self.web_automatn.close()
-        self.cleandir()
-        messagebox.showinfo("""browser closed","The browser window was closed succesfully!
+        messagebox.showinfo("browser closed","""The browser window was closed succesfully!
                             Please close the program by clicking the 'x' icon.""")
     
 
-    def cleandir(self):
-        if os.path.exists("sampleFile.jpeg"):
-            os.remove("sampleFile.jpeg")
+    # def cleandir(self):
+    #     if os.path.exists("sampleFile.jpeg"):
+    #         os.remove("sampleFile.jpeg")
 
 
 
 MyRoot = tk.Tk()
 MyWebAutoApp = WebAutomateApp(MyRoot)
-MyWebAutoApp.cleandir()
+
 MyRoot.mainloop()
