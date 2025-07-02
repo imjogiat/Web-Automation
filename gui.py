@@ -1,5 +1,8 @@
 import tkinter as tk
+from tkinter import messagebox
 import os
+import time
+from main import WebAutomatn
 
 
 class WebAutomateApp():
@@ -8,6 +11,7 @@ class WebAutomateApp():
         #define the widgets for the gui 
         self.root = root_i
         self.root.title("Web Automation Tool")
+        self.web_automatn = WebAutomatn()
         
         #Creating a log in frame
         self.loginframe = tk.Frame(self.root)
@@ -47,7 +51,7 @@ class WebAutomateApp():
         self.buttons_frame.pack(padx=10, pady=10)
         
         self.submit_button = tk.Button(self.buttons_frame, text="Submit", command=self.submit_data).grid(row=4, column=0, sticky="w", padx=5)
-        self.close_button = tk.Button(self.buttons_frame, text="Close", command=self.close_browser).grid(row=4, column=1, sticky="e", padx=5)
+        self.close_button = tk.Button(self.buttons_frame, text="Close browser", command=self.close_browser).grid(row=4, column=1, sticky="e", padx=5)
 
 
     def submit_data(self):
@@ -57,17 +61,28 @@ class WebAutomateApp():
         email = self.email_entry.get()
         curr_address = self.curr_addr_entry.get()
         perm_address = self.perm_addr_entry.get()
+        
+        self.web_automatn.login(username_i=username, password_i=password)
+        self.web_automatn.fill_form(fullname_i=fullname, email_i=email, currentaddress_i=curr_address, permaddress_i=perm_address)
+        self.web_automatn.download()
 
-        print(username, password)
 
-
+    #not closing from close button
     def close_browser(self):
         print("closing...")
+        self.web_automatn.close()
+        self.cleandir()
+        messagebox.showinfo("""browser closed","The browser window was closed succesfully!
+                            Please close the program by clicking the 'x' icon.""")
+    
 
+    def cleandir(self):
+        if os.path.exists("sampleFile.jpeg"):
+            os.remove("sampleFile.jpeg")
 
 
 
 MyRoot = tk.Tk()
 MyWebAutoApp = WebAutomateApp(MyRoot)
-
+MyWebAutoApp.cleandir()
 MyRoot.mainloop()

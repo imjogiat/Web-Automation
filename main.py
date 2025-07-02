@@ -33,8 +33,8 @@ class WebAutomatn:
         #Code to login to webpage
         #Locate username and password fields, then find the id tag in html
         #id="userName"
-        username_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "userName")))
-        password_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "password")))
+        username_field = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "userName")))
+        password_field = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "password")))
         # login_button = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.ID, "login")))
         login_button = self.driver.find_element(By.ID, "login")
 
@@ -52,20 +52,20 @@ class WebAutomatn:
         #Locate the Elements dropdown button and Text Box
         #inspect page to locate it (XPATH from rightclick)
         #then click the textbox
-        elements = WebDriverWait(self.driver, 10).until(
+        elements = WebDriverWait(self.driver, 15).until(
             EC.visibility_of_element_located((By.XPATH, 
                                             """//*[@id="app"]/div/div/div/div[1]/div/div/div[1]/span/div/div[1]""")))
         elements.click()
 
-        Textbox = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "item-0")))
+        Textbox = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "item-0")))
         Textbox.click()
 
         #Locate form input text fields
-        fullname_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "userName")))
-        email_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "userEmail")))
-        currentaddress_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "currentAddress")))
-        permaddress_field = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "permanentAddress")))
-        submit_button = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "submit")))
+        fullname_field = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "userName")))
+        email_field = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "userEmail")))
+        currentaddress_field = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "currentAddress")))
+        permaddress_field = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "permanentAddress")))
+        submit_button = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "submit")))
 
         #fill in form fields
         fullname_field.send_keys(fullname_i)
@@ -79,15 +79,15 @@ class WebAutomatn:
 
     def download(self):
         #locate the download/upload button and click download
-        upload_or_download = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "item-7")))
+        upload_or_download = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "item-7")))
         upload_or_download.click()
 
-        download_button = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "downloadButton")))
+        download_button = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.ID, "downloadButton")))
         download_button.click()
 
 
     def close(self):
-        input("\n\nPress Enter to close the browser\n\n")
+        # input("\n\nPress Enter to close the browser\n\n")
         self.driver.quit()
 
 if __name__ == "__main__":
